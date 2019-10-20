@@ -24,7 +24,7 @@ jobs:
 
   deploy:
     docker:
-      - image: alpine:3.7
+      - image: ubuntu:latest
     steps:
       - run:
           name: Deploy to netlify
