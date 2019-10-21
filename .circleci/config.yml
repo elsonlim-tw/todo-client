@@ -38,7 +38,7 @@ jobs:
           command: "sudo npm install netlify-cli -g"
       - run:
           name: link-netlify
-          command: "netlify link"
+          command: "netlify link --name awesome-dijkstra-9479d8"
       - run:
           name: netlify-deploy
           command: "yes build | netlify deploy --prod"
