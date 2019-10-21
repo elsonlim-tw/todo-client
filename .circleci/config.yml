@@ -37,6 +37,9 @@ jobs:
           name: install-netlify
           command: "sudo npm install netlify-cli -g"
       - run:
+          name: link-netlify
+          command: "netlify link"
+      - run:
           name: netlify-deploy
           command: "yes build | netlify deploy --prod"
 workflows:
