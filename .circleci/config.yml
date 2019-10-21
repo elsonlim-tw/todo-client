@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: update-npm
+          name: install-npm
           command: "sudo npm install -g npm@latest"
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
@@ -30,10 +30,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: install Netlify
+          name: install-npm
+          command: "sudo npm install -g npm@latest"
+      - run:
+          name: install-netlify
           command: npm install netlify-cli -g
       - run:
-          name: deploy
+          name: netlify-deploy
           command: netlify deploy --prod
 workflows:
   version: 2
