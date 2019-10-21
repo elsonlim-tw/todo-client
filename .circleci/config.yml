@@ -35,7 +35,7 @@ jobs:
           command: "sudo npm install -g npm@latest"
       - run:
           name: install-netlify
-          command: "npm install netlify-cli -g"
+          command: "sudo npm install netlify-cli -g"
       - run:
           name: netlify-deploy
           command: "netlify deploy --prod"
