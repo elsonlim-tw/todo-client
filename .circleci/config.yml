@@ -24,11 +24,17 @@ jobs:
 
   deploy:
     docker:
-      - image: byrnedo/alpine-curl
+      - image: circleci/node:10.16.3
+    environment:
+      NETLIFY_AUTH_TOKEN: $NETLIFY_AUTH_TOKEN
     steps:
+      - checkout
       - run:
-          name: Deploy to netlify
-          command: curl -H "Content-Type:application/json" -X POST https://api.netlify.com/build_hooks/${NETLIFY_BUILD_KEY}
+          name: install Netlify
+          command: npm install netlify-cli -g
+      - run:
+          name: deploy
+          command: netlify deploy --prod
 workflows:
   version: 2
   build-deploy:
