@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  test:
     working_directory: ~/app
     docker:
       - image: circleci/node:10.16.3
@@ -22,7 +22,7 @@ jobs:
           name: unit-test
           command: "npm run test"
 
-  deploy:
+  build_deploy:
     working_directory: ~/app
     docker:
       - image: circleci/node:10.16.3
@@ -31,9 +31,21 @@ jobs:
       - run:
           name: install-npm
           command: "sudo npm install -g npm@latest"
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: install-dependencies
+          command: "npm install"
       - run:
           name: install-netlify
           command: "sudo npm install netlify-cli -g"
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: build
+          command: "npm run build"
       - run:
           name: link-netlify
           command: "netlify link --name awesome-dijkstra-9479d8"
