@@ -46,7 +46,7 @@ jobs:
           command: "netlify link --name todo-client"
       - run:
           name: netlify-deploy
-          command: "(yes build || true) | netlify deploy --prod"
+          command: "netlify deploy --prod --dir=build"
 workflows:
   version: 2
   build-deploy:
