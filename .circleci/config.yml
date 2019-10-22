@@ -32,12 +32,12 @@ jobs:
       - checkout
       - run:
         name: install-npm
-          command: "sudo npm install -g npm@latest"
+        command: "sudo npm install -g npm@latest"
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+        key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
-          name: install-dependencies
-          command: "npm install"
+        name: install-dependencies
+        command: "npm install"
       - run:
         name: build
         command: "npm run build"
