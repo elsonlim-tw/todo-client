@@ -43,7 +43,7 @@ jobs:
           command: "sudo npm install netlify-cli -g"
       - run:
           name: link-netlify
-          command: "netlify link --name awesome-dijkstra-9479d8"
+          command: "netlify link --name todo-client"
       - run:
           name: netlify-deploy
           command: "(yes build || true) | netlify deploy --prod"
